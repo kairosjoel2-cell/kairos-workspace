@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10110e">
+  <meta name="description" content="Compress images with precision using KAIROS Image Compressor. Fast, private and completely browser-based.">
+
+  <title>Image Compressor — KAIROS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="compressor.css">
+</head>
+
+<body class="compressor-page">
+
+  <header class="compressor-nav">
+    <a href="index.html" class="compressor-brand">KAIROS<span>®</span></a>
+
+    <div class="compressor-nav-center">
+      <span class="nav-indicator"></span>
+      DESIGN STUDIO
+    </div>
+
+    <a href="design.html" class="back-link">
+      <span>←</span> ALL TOOLS
+    </a>
+  </header>
+
+  <main>
+
+    <section class="compressor-heading">
+      <div class="eyebrow">
+        <span>01 / IMAGE TOOLS</span>
+        <span>PRIVATE BY DESIGN</span>
+      </div>
+
+      <div class="heading-layout">
+        <div>
+          <p class="section-kicker">PRECISION IMAGE OPTIMIZATION</p>
+
+          <h1>LESS SIZE.<br><span>MORE QUALITY.</span></h1>
+        </div>
+
+        <p class="heading-description">
+          Reduce image file sizes without sending your files anywhere.
+          Every operation happens directly on your device.
+        </p>
+      </div>
+    </section>
+
+    <section class="compressor-workspace">
+
+      <div class="workspace-topline">
+        <span>COMPRESSION WORKSPACE</span>
+        <span>LOCAL PROCESSING / 100%</span>
+      </div>
+
+      <div class="workspace-grid">
+
+        <div class="upload-panel">
+
+          <div class="panel-heading">
+            <div>
+              <span class="panel-index">01</span>
+              <h2>Source image</h2>
+            </div>
+
+            <span class="panel-status">AWAITING FILE</span>
+          </div>
+
+          <label class="upload-zone" id="uploadZone" for="imageInput">
+
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/jpeg,image/png,image/webp,image/bmp"
+              hidden
+            >
+
+            <div class="upload-symbol">
+              <span>↑</span>
+            </div>
+
+            <h3>Drop your image here</h3>
+
+            <p>or <span>browse files</span> from your device</p>
+
+            <div class="upload-formats">
+              JPG <i></i> PNG <i></i> WEBP <i></i> BMP
+            </div>
+
+          </label>
+
+          <div class="source-preview hidden" id="sourcePreview">
+            <div class="preview-image-wrap">
+              <img id="sourceImage" alt="Original image preview">
+              <span class="image-label">ORIGINAL</span>
+            </div>
+
+            <div class="source-details">
+              <div>
+                <span class="detail-label">FILE NAME</span>
+                <strong id="sourceName">—</strong>
+              </div>
+
+              <div>
+                <span class="detail-label">ORIGINAL SIZE</span>
+                <strong id="sourceSize">—</strong>
+              </div>
+
+              <button type="button" id="removeImage" class="remove-button">
+                REMOVE FILE ×
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="settings-panel">
+
+          <div class="panel-heading">
+            <div>
+              <span class="panel-index">02</span>
+              <h2>Output settings</h2>
+            </div>
+
+            <span class="panel-status">CUSTOMIZE</span>
+          </div>
+
+          <div class="setting-group">
+            <div class="setting-label">
+              <label for="quality">Compression quality</label>
+              <strong id="qualityValue">75%</strong>
+            </div>
+
+            <input
+              type="range"
+              id="quality"
+              min="10"
+              max="100"
+              value="75"
+            >
+
+            <div class="range-labels">
+              <span>SMALLER FILE</span>
+              <span>HIGHER QUALITY</span>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <label for="outputFormat">Output format</label>
+
+            <select id="outputFormat">
+              <option value="image/webp">WebP — Recommended</option>
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/png">PNG</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label for="maxWidth">Maximum width</label>
+
+            <select id="maxWidth">
+              <option value="original">Keep original dimensions</option>
+              <option value="2560">2560 px</option>
+              <option value="1920">1920 px</option>
+              <option value="1600">1600 px</option>
+              <option value="1280">1280 px</option>
+              <option value="1080">1080 px</option>
+              <option value="800">800 px</option>
+            </select>
+          </div>
+
+          <div class="settings-note">
+            <span>ⓘ</span>
+            <p>
+              Higher compression can reduce image quality.
+              PNG output is lossless and does not use the quality slider.
+            </p>
+          </div>
+
+          <button type="button" id="compressButton" class="compress-button" disabled>
+            <span>COMPRESS IMAGE</span>
+            <span class="button-arrow">↗</span>
+          </button>
+
+          <p class="privacy-note">
+            <span></span> YOUR FILES NEVER LEAVE YOUR DEVICE
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+    <section class="result-section hidden" id="resultSection">
+
+      <div class="result-heading">
+        <div>
+          <span class="section-kicker">03 / OPTIMIZATION RESULT</span>
+          <h2>Your image, <span>refined.</span></h2>
+        </div>
+
+        <span class="result-status">PROCESSING COMPLETE</span>
+      </div>
+
+      <div class="result-grid">
+
+        <div class="result-preview">
+          <img id="resultImage" alt="Compressed image preview">
+          <span class="image-label">COMPRESSED OUTPUT</span>
+        </div>
+
+        <div class="result-information">
+
+          <div class="saving-display">
+            <span>FILE SIZE REDUCTION</span>
+            <strong id="savingPercent">0%</strong>
+            <p id="savingDescription">Your optimized image is ready.</p>
+          </div>
+
+          <div class="size-comparison">
+            <div>
+              <span>ORIGINAL</span>
+              <strong id="originalResultSize">—</strong>
+            </div>
+
+            <div>
+              <span>COMPRESSED</span>
+              <strong id="compressedResultSize">—</strong>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="downloadButton" class="download-button">
+              DOWNLOAD IMAGE <span>↓</span>
+            </button>
+
+            <button type="button" id="compressAgain" class="again-button">
+              ADJUST SETTINGS
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="compressor-footer">
+      <span>KAIROS® / DESIGN STUDIO</span>
+      <span>BUILT FOR BETTER DIGITAL WORK.</span>
+      <a href="design.html">EXPLORE MORE TOOLS ↗</a>
+    </section>
+
+  </main>
+
+  <script src="compressor.js"></script>
+</body>
+</html>

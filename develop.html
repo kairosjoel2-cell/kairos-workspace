@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10110e">
+  <title>DEVELOP — KAIROS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="develop.css">
+  <script src="develop.js" defer></script>
+</head>
+
+<body>
+
+<div class="develop-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="dev-brand">
+      <div class="brand-symbol">K</div>
+      <div>
+        <div class="brand-name">KAIROS</div>
+        <div class="sidebar-label">DEVELOP STUDIO</div>
+      </div>
+    </div>
+
+    <div class="sidebar-workspace">
+      <span class="sidebar-label">WORKSPACE</span>
+      <div class="workspace-selector">
+        <span>Personal Workspace</span>
+        <span>⌄</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-navigation">
+
+      <span class="sidebar-label">WORKSPACE</span>
+
+      <button class="side-link active" data-view="overview" type="button">
+        <span class="side-icon">⌂</span>
+        Overview
+      </button>
+
+      <button class="side-link" data-view="editor" type="button">
+        <span class="side-icon">⌘</span>
+        Code Editor
+      </button>
+
+      <button class="side-link" data-view="playground" type="button">
+        <span class="side-icon">▷</span>
+        Playground
+      </button>
+
+      <span class="sidebar-label">TOOLS</span>
+
+      <button class="side-link" data-view="json" type="button">
+        <span class="side-icon">{ }</span>
+        JSON Formatter
+      </button>
+
+      <button class="side-link" data-view="terminal" type="button">
+        <span class="side-icon">›_</span>
+        Terminal
+      </button>
+
+      <span class="sidebar-label">PREFERENCES</span>
+
+      <button class="side-link" data-view="settings" type="button">
+        <span class="side-icon">⚙</span>
+        Settings
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        Local environment ready
+      </div>
+      <div class="sidebar-label">KAIROS DEVELOP · 1.0</div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="main-area">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+        <div class="breadcrumb">
+          KAIROS <span>/</span>
+          <strong id="breadcrumbCurrent">Overview</strong>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="small-button" id="themeToggle" type="button" title="Toggle theme">
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <div class="view-container">
+
+      <!-- OVERVIEW -->
+      <section class="app-view active" id="view-overview">
+
+        <div class="welcome-section">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span>
+              YOUR DEVELOPMENT SPACE
+            </div>
+
+            <h1>Build something<br><span>remarkable.</span></h1>
+
+            <p>
+              Your ideas deserve more than an ordinary workspace.
+              Create, experiment and bring them to life.
+            </p>
+          </div>
+
+          <div class="welcome-decoration">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit-core">K</div>
+            <div class="orbit-label">DEVELOP</div>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+
+          <button class="quick-action primary-action" data-action="new-project" type="button">
+            <span class="action-icon">＋</span>
+            <span>New project</span>
+            <span class="action-arrow">↗</span>
+          </button>
+
+          <button class="quick-action" data-action="open-editor" type="button">
+            <span class="action-icon">⌘</span>
+            <span>Open editor</span>
+            <span class="action-arrow">↗</span>
+          </button>
+
+          <button class="quick-action" data-action="open-playground" type="button">
+            <span class="action-icon">▷</span>
+            <span>Try playground</span>
+            <span class="action-arrow">↗</span>
+          </button>
+
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">YOUR WORK</span>
+            <h2>Recent projects</h2>
+          </div>
+          <span class="text-link" id="projectCount">0 projects</span>
+        </div>
+
+        <div class="project-grid" id="recentProjects">
+          <div class="empty-projects">
+            <div class="empty-icon">⌘</div>
+            <h3>Your workspace starts here</h3>
+            <p>Create your first project to get started.</p>
+            <button class="primary-button" data-action="new-project" type="button">
+              Create project
+            </button>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">ALL PROJECTS</span>
+            <h2>Project library</h2>
+          </div>
+        </div>
+
+        <div class="project-grid" id="allProjects"></div>
+
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">QUICK ACCESS</span>
+            <h2>Developer tools</h2>
+          </div>
+        </div>
+
+        <div class="utility-grid">
+
+          <button class="utility-card" data-action="open-playground" type="button">
+            <span class="utility-icon">▷</span>
+            <strong>Live Playground</strong>
+            <span>Experiment with HTML, CSS and JavaScript.</span>
+            <span class="utility-arrow">↗</span>
+          </button>
+
+          <button class="utility-card" data-action="open-json" type="button">
+            <span class="utility-icon">{ }</span>
+            <strong>JSON Formatter</strong>
+            <span>Format and minify JSON data.</span>
+            <span class="utility-arrow">↗</span>
+          </button>
+
+          <button class="utility-card" data-action="open-terminal" type="button">
+            <span class="utility-icon">›_</span>
+            <strong>Terminal</strong>
+            <span>Use the built-in command simulator.</span>
+            <span class="utility-arrow">↗</span>
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- CODE EDITOR -->
+      <section class="app-view" id="view-editor">
+
+        <div class="page-heading">
+          <div>
+            <span class="section-kicker">DEVELOPMENT ENVIRONMENT</span>
+            <h1>Code Editor</h1>
+            <p>Manage your local projects and edit your files.</p>
+          </div>
+
+          <button class="primary-button" id="saveProject" type="button">
+            Save changes
+          </button>
+        </div>
+
+        <div class="editor-workspace">
+
+          <aside class="editor-sidebar">
+            <div class="editor-sidebar-header">
+              <strong>EXPLORER</strong>
+              <button class="small-button" id="addFile" type="button" title="Add file">＋</button>
+            </div>
+
+            <div class="file-tree" id="fileTree">
+              <div class="file-tree-empty">Open or create a project to see its files.</div>
+            </div>
+          </aside>
+
+          <div class="editor-main">
+
+            <div class="editor-tabs" id="editorTabs">
+              <div class="editor-empty-tab">No file open</div>
+            </div>
+
+            <div class="editor-content">
+              <div class="editor-placeholder" id="editorPlaceholder">
+                <div class="placeholder-symbol">⌘</div>
+                <h2>Your editor is ready</h2>
+                <p>Select a file from the explorer to start editing.</p>
+              </div>
+
+              <textarea
+                class="code-editor"
+                id="codeEditor"
+                spellcheck="false"
+                placeholder="Select a file to begin editing..."
+                aria-label="Code editor"
+              ></textarea>
+            </div>
+
+            <div class="editor-statusbar">
+              <span id="editorFileStatus">No file selected</span>
+              <span id="editorLanguage">Plain Text</span>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PLAYGROUND -->
+      <section class="app-view" id="view-playground">
+
+        <div class="page-heading">
+          <div>
+            <span class="section-kicker">EXPERIMENT AND CREATE</span>
+            <h1>Live Playground</h1>
+            <p>Write code and preview your work instantly.</p>
+          </div>
+
+          <button class="primary-button" id="runPlayground" type="button">
+            ▶ Run code
+          </button>
+        </div>
+
+        <div class="playground-layout">
+
+          <div class="playground-editors">
+
+            <div class="playground-panel">
+              <div class="panel-heading">
+                <span class="file-indicator html-indicator"></span>
+                HTML
+              </div>
+              <textarea id="playgroundHTML" class="tool-code-area" spellcheck="false" aria-label="HTML code"><h1>Hello, world!</h1>
+<p>Welcome to KAIROS DEVELOP.</p>
+<button onclick="alert('It works!')">Test button</button></textarea>
+            </div>
+
+            <div class="playground-panel">
+              <div class="panel-heading">
+                <span class="file-indicator css-indicator"></span>
+                CSS
+              </div>
+              <textarea id="playgroundCSS" class="tool-code-area" spellcheck="false" aria-label="CSS code">body {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  background: #f4f5f2;
+  color: #171a16;
+}
+
+h1 {
+  color: #245c45;
+}</textarea>
+            </div>
+
+            <div class="playground-panel">
+              <div class="panel-heading">
+                <span class="file-indicator js-indicator"></span>
+                JAVASCRIPT
+              </div>
+              <textarea id="playgroundJS" class="tool-code-area" spellcheck="false" aria-label="JavaScript code">console.log("KAIROS DEVELOP is ready.");</textarea>
+            </div>
+
+          </div>
+
+          <div class="playground-preview">
+            <div class="preview-heading">
+              <strong>LIVE PREVIEW</strong>
+              <button class="small-button" id="refreshPreview" type="button">↻ Refresh</button>
+            </div>
+
+            <iframe
+              id="playgroundFrame"
+              title="Code preview"
+              sandbox="allow-scripts"
+            ></iframe>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- JSON FORMATTER -->
+      <section class="app-view" id="view-json">
+
+        <div class="page-heading">
+          <div>
+            <span class="section-kicker">DATA UTILITIES</span>
+            <h1>JSON Formatter</h1>
+            <p>Validate, format and minify your JSON data.</p>
+          </div>
+        </div>
+
+        <div class="formatter-workspace">
+
+          <div class="formatter-column">
+            <div class="panel-heading">INPUT JSON</div>
+
+            <textarea
+              id="jsonInput"
+              class="tool-code-area"
+              spellcheck="false"
+              placeholder='Paste your JSON here...'
+              aria-label="JSON input"
+            ></textarea>
+
+            <div class="formatter-controls">
+              <button class="primary-button" id="formatJSON" type="button">Format JSON</button>
+              <button class="secondary-button" id="minifyJSON" type="button">Minify</button>
+              <button class="secondary-button" id="clearJSON" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div class="formatter-column">
+            <div class="panel-heading">OUTPUT</div>
+
+            <textarea
+              id="jsonOutput"
+              class="tool-code-area"
+              spellcheck="false"
+              readonly
+              placeholder="Your formatted JSON will appear here..."
+              aria-label="JSON output"
+            ></textarea>
+
+            <div class="formatter-controls">
+              <button class="secondary-button" id="copyJSON" type="button">Copy output</button>
+              <span class="tool-feedback" id="jsonStatus">Waiting for input</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- TERMINAL -->
+      <section class="app-view" id="view-terminal">
+
+        <div class="page-heading">
+          <div>
+            <span class="section-kicker">COMMAND ENVIRONMENT</span>
+            <h1>Terminal</h1>
+            <p>A simple browser-based command simulator.</p>
+          </div>
+
+          <button class="secondary-button" id="clearTerminal" type="button">
+            Clear terminal
+          </button>
+        </div>
+
+        <div class="terminal-window">
+
+          <div class="terminal-titlebar">
+            <div class="terminal-lights">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span>kairos-terminal</span>
+          </div>
+
+          <div class="terminal-output" id="terminalOutput"></div>
+
+          <form class="terminal-input-line" id="terminalForm">
+            <span>kairos &gt;</span>
+            <input
+              id="terminalInput"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Type help to see commands..."
+              aria-label="Terminal command"
+            >
+          </form>
+
+        </div>
+
+        <p class="terminal-note">
+          This is a simulated terminal. It does not execute commands on your computer.
+        </p>
+
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="app-view" id="view-settings">
+
+        <div class="page-heading">
+          <div>
+            <span class="section-kicker">PERSONALISE YOUR SPACE</span>
+            <h1>Settings</h1>
+            <p>Adjust your development environment.</p>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+
+          <div class="setting-row">
+            <div>
+              <strong>Interface theme</strong>
+              <p>Choose the appearance of your workspace.</p>
+            </div>
+
+            <select id="interfaceTheme" class="tool-select">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Editor font size</strong>
+              <p>Adjust the text size in the code editor.</p>
+            </div>
+
+            <select id="editorFontSize" class="tool-select">
+              <option value="12">12px</option>
+              <option value="13">13px</option>
+              <option value="14" selected>14px</option>
+              <option value="15">15px</option>
+              <option value="16">16px</option>
+              <option value="18">18px</option>
+              <option value="20">20px</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Word wrap</strong>
+              <p>Wrap long lines inside the editor.</p>
+            </div>
+
+            <input type="checkbox" id="wordWrap" checked>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- NEW PROJECT MODAL -->
+<div class="modal-overlay" id="projectModal">
+
+  <div class="project-modal">
+
+    <div class="modal-heading">
+      <div>
+        <span class="section-kicker">GET STARTED</span>
+        <h2>Create a project</h2>
+      </div>
+
+      <button class="small-button" id="closeProjectModal" type="button">✕</button>
+    </div>
+
+    <form id="projectForm">
+
+      <div class="tool-field">
+        <label class="tool-label" for="projectName">Project name</label>
+        <input
+          class="tool-input"
+          id="projectName"
+          type="text"
+          placeholder="My awesome project"
+          required
+          maxlength="50"
+        >
+      </div>
+
+      <div class="tool-field">
+        <label class="tool-label" for="projectType">Project type</label>
+        <select class="tool-select" id="projectType">
+          <option value="html">HTML / CSS / JavaScript</option>
+          <option value="javascript">JavaScript</option>
+          <option value="website">Website</option>
+          <option value="blank">Blank project</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button class="secondary-button" id="cancelProject" type="button">
+          Cancel
+        </button>
+
+        <button class="primary-button" id="saveProject" type="submit">
+          Create project
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+</body>
+</html>

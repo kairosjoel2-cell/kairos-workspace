@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="KAIROS Workspace — Your creative command centre.">
+  <title>KAIROS® — Workspace</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="workspace.css">
+  <script src="workspace.js" defer></script>
+</head>
+
+<body>
+
+  <div class="workspace-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="brand">KAIROS<span>®</span></a>
+
+      <div class="workspace-label">PERSONAL ENVIRONMENT</div>
+
+      <nav class="side-navigation">
+        <a href="#overview" class="side-link active" data-view="overview">
+          <span class="side-icon">◫</span>
+          Overview
+        </a>
+        <a href="#projects" class="side-link" data-view="projects">
+          <span class="side-icon">▧</span>
+          My Projects
+        </a>
+        <a href="#resources" class="side-link" data-view="resources">
+          <span class="side-icon">◇</span>
+          Saved Resources
+        </a>
+        <a href="#notes" class="side-link" data-view="notes">
+          <span class="side-icon">▤</span>
+          Notes
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <span class="storage-label">LOCAL WORKSPACE</span>
+          <div class="storage-indicator">
+            <span></span>
+            Active on this device
+          </div>
+          <p>Your workspace data is saved in this browser.</p>
+        </div>
+
+        <a href="index.html" class="back-home">← Back to KAIROS</a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Toggle sidebar">☰</button>
+
+        <div class="breadcrumb">
+          <span>KAIROS</span>
+          <span>/</span>
+          <strong id="currentSection">Overview</strong>
+        </div>
+
+        <div class="topbar-right">
+          <span class="local-status"><i></i> ALL CHANGES SAVED LOCALLY</span>
+          <div class="profile-mark">K</div>
+        </div>
+      </header>
+
+      <div class="content-area">
+
+        <!-- OVERVIEW -->
+        <section class="view active" id="view-overview">
+
+          <div class="welcome-row">
+            <div>
+              <span class="eyebrow">YOUR PERSONAL ENVIRONMENT</span>
+              <h1>Your space.<br><span>Your momentum.</span></h1>
+              <p>Everything you're building, organised in one place.</p>
+            </div>
+
+            <div class="date-card">
+              <span>WORKSPACE STATUS</span>
+              <strong>READY</strong>
+              <small>Your creative environment is active.</small>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span>ACTIVE PROJECTS</span>
+              <strong id="projectCount">0</strong>
+              <small>Projects in your workspace</small>
+            </article>
+
+            <article class="stat-card">
+              <span>SAVED RESOURCES</span>
+              <strong id="resourceCount">0</strong>
+              <small>Useful links and references</small>
+            </article>
+
+            <article class="stat-card">
+              <span>PERSONAL NOTES</span>
+              <strong id="noteCount">0</strong>
+              <small>Ideas captured</small>
+            </article>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">YOUR WORK</span>
+              <h2>Recent projects</h2>
+            </div>
+            <button class="text-button" data-action="new-project">+ New project</button>
+          </div>
+
+          <div class="project-grid" id="recentProjects">
+            <div class="empty-state">
+              <span>◇</span>
+              <h3>Your next big idea starts here.</h3>
+              <p>Create a project to begin organising your work.</p>
+              <button class="primary-button" data-action="new-project">Create your first project</button>
+            </div>
+          </div>
+
+          <div class="quick-access">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">QUICK ACCESS</span>
+                <h2>Continue creating</h2>
+              </div>
+            </div>
+
+            <div class="quick-grid">
+              <a href="design.html" class="quick-card">
+                <span class="quick-symbol">✳</span>
+                <div>
+                  <strong>Design</strong>
+                  <small>Explore visual tools</small>
+                </div>
+                <span class="quick-arrow">↗</span>
+              </a>
+
+              <a href="develop.html" class="quick-card">
+                <span class="quick-symbol">&lt;/&gt;</span>
+                <div>
+                  <strong>Develop</strong>
+                  <small>Build and experiment</small>
+                </div>
+                <span class="quick-arrow">↗</span>
+              </a>
+
+              <a href="#notes" class="quick-card" data-view-link="notes">
+                <span class="quick-symbol">▤</span>
+                <div>
+                  <strong>Notes</strong>
+                  <small>Capture an idea</small>
+                </div>
+                <span class="quick-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="view" id="view-projects">
+          <div class="page-heading">
+            <span class="eyebrow">YOUR CREATIVE WORK</span>
+            <h1>My projects</h1>
+            <p>Keep your ideas, plans and ongoing work organised.</p>
+          </div>
+
+          <div class="toolbar">
+            <input type="search" id="projectSearch" placeholder="Search projects...">
+            <button class="primary-button" data-action="new-project">+ New project</button>
+          </div>
+
+          <div class="project-grid" id="allProjects"></div>
+        </section>
+
+        <!-- RESOURCES -->
+        <section class="view" id="view-resources">
+          <div class="page-heading">
+            <span class="eyebrow">YOUR PERSONAL LIBRARY</span>
+            <h1>Saved resources</h1>
+            <p>Keep useful websites and references within reach.</p>
+          </div>
+
+          <form class="resource-form" id="resourceForm">
+            <input type="text" id="resourceTitle" placeholder="Resource name" required>
+            <input type="url" id="resourceURL" placeholder="https://example.com" required>
+            <button class="primary-button" type="submit">Save resource</button>
+          </form>
+
+          <div class="resource-list" id="resourceList"></div>
+        </section>
+
+        <!-- NOTES -->
+        <section class="view" id="view-notes">
+          <div class="page-heading">
+            <span class="eyebrow">THINK IT. CAPTURE IT.</span>
+            <h1>Your notes</h1>
+            <p>A private space for thoughts, plans and ideas on this device.</p>
+          </div>
+
+          <div class="notes-layout">
+            <div class="notes-list-panel">
+              <div class="notes-list-heading">
+                <strong>ALL NOTES</strong>
+                <button class="text-button" id="newNote">+ New</button>
+              </div>
+              <div id="notesList"></div>
+            </div>
+
+            <div class="note-editor">
+              <input type="text" id="noteTitle" placeholder="Untitled note">
+              <textarea id="noteBody" placeholder="Start writing your thoughts..."></textarea>
+              <div class="note-footer">
+                <span id="noteStatus">Ready</span>
+                <button class="danger-button" id="deleteNote">Delete note</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal" id="projectModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeProjectModal" aria-label="Close">×</button>
+
+      <span class="eyebrow">NEW CREATIVE WORK</span>
+      <h2>Create a project</h2>
+      <p>Give your next idea a place to grow.</p>
+
+      <form id="projectForm">
+        <label for="projectName">Project name</label>
+        <input type="text" id="projectName" placeholder="e.g. My new website" required>
+
+        <label for="projectType">Project category</label>
+        <select id="projectType">
+          <option value="Design">Design</option>
+          <option value="Development">Development</option>
+          <option value="Business">Business</option>
+          <option value="Personal">Personal</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="projectDescription">Description</label>
+        <textarea id="projectDescription" placeholder="What are you working on?"></textarea>
+
+        <button class="primary-button full-button" type="submit">Create project →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+</body>
+</html>

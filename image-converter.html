@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10110e">
+  <title>Image Converter — KAIROS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="converter.css">
+</head>
+<body>
+
+  <header class="converter-nav">
+    <a href="index.html" class="brand">KAIROS<span>®</span></a>
+    <span class="nav-label">DESIGN STUDIO / IMAGE LAB</span>
+    <a href="design.html" class="back-link">← BACK TO STUDIO</a>
+  </header>
+
+  <main class="converter-main">
+
+    <section class="converter-heading">
+      <div class="eyebrow"><span></span> KAIROS CREATIVE UTILITY / 002</div>
+      <h1>ONE IMAGE.<br><span>ANY FORMAT.</span></h1>
+      <p>Convert your images into the format your workflow demands. Simple, precise and entirely private.</p>
+    </section>
+
+    <section class="converter-workspace">
+
+      <div class="workspace-top">
+        <div>
+          <span class="section-index">01 / SOURCE FILE</span>
+          <h2>Bring your image.</h2>
+        </div>
+        <span class="local-status"><i></i> LOCAL PROCESSING</span>
+      </div>
+
+      <label class="converter-upload" id="uploadZone" for="imageInput">
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/bmp">
+        <span class="upload-symbol">＋</span>
+        <strong>Drop your image here</strong>
+        <span>or <u>browse files</u> from your device</span>
+        <small>JPG · PNG · WEBP · BMP / MAX 50 MB</small>
+      </label>
+
+      <div class="source-preview" id="sourcePreview" hidden>
+        <div class="source-image-wrap">
+          <img id="sourceImage" alt="Selected image preview">
+        </div>
+        <div class="source-details">
+          <span class="section-index">SELECTED IMAGE</span>
+          <strong id="sourceName">image.jpg</strong>
+          <span id="sourceInfo">0 KB · 0 × 0 px</span>
+        </div>
+        <button class="remove-button" id="removeImage" type="button">REMOVE ×</button>
+      </div>
+
+      <div class="converter-settings">
+        <div class="settings-heading">
+          <span class="section-index">02 / OUTPUT SETTINGS</span>
+          <h2>Choose your format.</h2>
+        </div>
+
+        <div class="format-grid">
+          <label class="format-option selected">
+            <input type="radio" name="format" value="image/webp" checked>
+            <span class="format-extension">WEBP</span>
+            <strong>WebP</strong>
+            <small>Modern web images</small>
+          </label>
+
+          <label class="format-option">
+            <input type="radio" name="format" value="image/jpeg">
+            <span class="format-extension">JPG</span>
+            <strong>JPEG</strong>
+            <small>Photos and sharing</small>
+          </label>
+
+          <label class="format-option">
+            <input type="radio" name="format" value="image/png">
+            <span class="format-extension">PNG</span>
+            <strong>PNG</strong>
+            <small>Transparency support</small>
+          </label>
+        </div>
+
+        <div class="quality-setting" id="qualitySetting">
+          <div>
+            <label for="quality">OUTPUT QUALITY</label>
+            <span id="qualityValue">90%</span>
+          </div>
+          <input type="range" id="quality" min="10" max="100" value="90">
+          <p>Quality applies to WebP and JPEG. PNG conversion preserves image data without a quality slider.</p>
+        </div>
+
+        <button class="convert-button" id="convertButton" type="button" disabled>
+          <span>CONVERT IMAGE</span>
+          <span>↗</span>
+        </button>
+      </div>
+
+      <section class="conversion-result" id="resultSection" hidden>
+        <div class="result-heading">
+          <span class="section-index">03 / CONVERSION COMPLETE</span>
+          <span class="result-status">READY TO DOWNLOAD</span>
+        </div>
+
+        <div class="result-preview">
+          <img id="resultImage" alt="Converted image preview">
+        </div>
+
+        <div class="result-details">
+          <div>
+            <span>OUTPUT FILE</span>
+            <strong id="resultName">image.webp</strong>
+          </div>
+          <div>
+            <span>FILE SIZE</span>
+            <strong id="resultSize">0 KB</strong>
+          </div>
+          <div>
+            <span>FORMAT</span>
+            <strong id="resultFormat">WEBP</strong>
+          </div>
+        </div>
+
+        <button class="download-button" id="downloadButton" type="button">
+          DOWNLOAD CONVERTED IMAGE <span>↓</span>
+        </button>
+
+        <button class="convert-again" id="convertAgain" type="button">
+          CONVERT ANOTHER IMAGE ↗
+        </button>
+      </section>
+
+    </section>
+
+    <footer class="converter-footer">
+      <a href="design.html">KAIROS®</a>
+      <span>YOUR FILES STAY ON YOUR DEVICE.</span>
+      <span>UTILITY 002 / 2026</span>
+    </footer>
+
+  </main>
+
+  <script src="converter.js"></script>
+</body>
+</html>
